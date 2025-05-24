@@ -2,18 +2,23 @@
 
 ## Структура проекта
 
-Yadro\
-$\quad$ - migrations -  Папка с миграциями и настройками alembic\
-$\quad$ $\quad$ - - versions/ - Папка с миграциями\
-$\quad$ $\quad$ - - alembic.ini - конфигурация alembic\
-$\quad$ - database.py - Подключение к базе данных\
-$\quad$ - models.py - Модели базы данных\
-$\quad$ - main.py - Обработчики приложения\
-$\quad$ - tests.py - Тесты\
-$\quad$ - .env - Переменные окружения\
-$\quad$ - .env.example - Пример переменных окружения\
-$\quad$ - Dockerfile\
-$\quad$ - docker-compose.yml
+```
+├── .gitignore               # Файл исключений для git
+├── .env                     # Переменные окружения
+├── .env.example             # Пример переменных окружения
+├── Dockerfile               # Файл сборки docker образа
+├── docker-compose.yml       # запуск проекта
+├── docker-compose-tests.yml # запуск тестов проекта
+├── migrations               # Папка с миграциями и настройками alembic
+    ├── versions             # Папка с миграциями
+    └── alembic.ini          # конфигурация alembic
+├── database.py              # Подключение к базе данных
+├── models.py                # Модели базы данных
+├── main.py                  # Обработчики приложения
+├── requirements.txt         # Список пакетов для установки
+└── tests.py                 # Тесты
+```
+
 
 ## Основные функции (main.py):
 ### Валидация графов:
@@ -40,23 +45,9 @@ $\quad$ - docker-compose.yml
 docker-compose up -d --build
 ```
 
-Приложение будет доступно на `http://localhost:8080`
+Приложение будет доступно на [http://localhost:8080](http://localhost:8080)
 
-Для запуска тестов:
-
-Вариант №1 (Основной compose-файл):
-
-Тесты автоматически запускаются при запуске контейнера. 
-
-Для того, чтобы их найти:
-```commandline
-docker-compose up -d --build
-docker-compose logs app
-```
-
-Вариант №2 (Через compose-файл для тестов):
-
-Запустить docker-compose файл для тестирования:
+## Для запуска тестов:
 ```commandline
 docker-compose -f docker-compose-tests.yml up --build --abort-on-container-exit
 ```
